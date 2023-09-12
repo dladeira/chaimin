@@ -3,9 +3,10 @@ export const useUserStore = defineStore('user', () => {
     const userData = ref({})
     const items = ref([])
     const sales = ref([])
+    const runtimeConfig = useRuntimeConfig()
 
     async function login(username, password) {
-        const { data, error } = await useFetch("http://localhost:3039/login", {
+        const { data, error } = await useFetch(runtimeConfig.public.API + "/login", {
             method: "POST",
             body: JSON.stringify({
                 username,
@@ -23,7 +24,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function signup(username, password) {
-        const { data, error } = await useFetch("http://localhost:3039/signup", {
+        const { data, error } = await useFetch(runtimeConfig.public.API + "/signup", {
             method: "POST",
             body: JSON.stringify({
                 username,
@@ -41,7 +42,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function loadItems() {
-        const { data, error } = await useFetch('http://localhost:3039/items', {
+        const { data, error } = await useFetch(runtimeConfig.public.API + '/items', {
             method: "POST",
             body: {
                 token: token.value
@@ -53,7 +54,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function loadSales() {
-        const { data, error } = await useFetch('http://localhost:3039/sales', {
+        const { data, error } = await useFetch(runtimeConfig.public.API + '/sales', {
             method: "POST",
             body: {
                 token: token.value
@@ -65,7 +66,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function loadUser() {
-        const { data, error } = await useFetch('http://localhost:3039/user', {
+        const { data, error } = await useFetch(runtimeConfig.public.API + '/user', {
             method: "POST",
             body: {
                 token: token.value
@@ -84,6 +85,7 @@ export const useUserStore = defineStore('user', () => {
 
     function logout() {
         token.value = null
+        userData.value = null
         navigateTo('/')
     }
 
@@ -92,7 +94,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function createItem(name, category, price, cost) {
-        await useFetch('http://localhost:3039/items/new', {
+        await useFetch(runtimeConfig.public.API + '/items/new', {
             method: "POST",
             body: {
                 token: token.value,
@@ -107,7 +109,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function updateItem(_id, name, category, price, cost) {
-        await useFetch('http://localhost:3039/items/update', {
+        await useFetch(runtimeConfig.public.API + '/items/update', {
             method: "POST",
             body: {
                 token: token.value,
@@ -123,7 +125,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function deleteItem(_id) {
-        await useFetch('http://localhost:3039/items/delete', {
+        await useFetch(runtimeConfig.public.API + '/items/delete', {
             method: "POST",
             body: {
                 token: token.value,
@@ -145,7 +147,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function registerSale(item) {
-        await useFetch('http://localhost:3039/sales/register', {
+        await useFetch(runtimeConfig.public.API + '/sales/register', {
             method: "POST",
             body: {
                 token: token.value,
@@ -158,7 +160,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function cancelSale(_id) {
-        await useFetch('http://localhost:3039/sales/cancel', {
+        await useFetch(runtimeConfig.public.API + '/sales/cancel', {
             method: "POST",
             body: {
                 token: token.value,

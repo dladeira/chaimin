@@ -4,8 +4,7 @@
     "scripts": {
         "build": "nuxt build",
         "dev": "nuxt dev --port=3038",
-        "generate": "nuxt generate",
-        "preview": "nuxt preview",
+        "start": "npm i && NODE_NO_WARNINGS=1 nuxt build --dotenv ../.env && PORT=3038 node .output/server/index.mjs",
         "postinstall": "nuxt prepare"
     },
     "devDependencies": {

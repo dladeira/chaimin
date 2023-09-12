@@ -7,9 +7,9 @@
             <NuxtLink to="/revenue" class="navbar-link" v-if="user.loggedIn()">Revenue</NuxtLink>
         </div>
         <div class="auth">
-            <NuxtLink to="login" class="login-button" v-if="!user.loggedIn()">Login</NuxtLink>
+            <NuxtLink to="/" class="login-button" v-if="!user.loggedIn()">Log in</NuxtLink>
             <div class="logout" v-else>
-                <div class="logout-text" v-if="user.data.username">Logged in as: {{ user.data.username }}</div>
+                <div class="logout-text" v-if="user.data.username">Logged in as: <strong>{{ user.data.username }}</strong></div>
                 <button class="logout-button" @click.prevent="user.logout">Logout</button>
             </div>
         </div>
@@ -25,7 +25,7 @@
 
     height: 80px;
     width: 100%;
-    
+
     padding: 0 2rem;
 
     background-color: black;

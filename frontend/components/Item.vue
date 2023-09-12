@@ -1,13 +1,13 @@
 <template>
     <form class="form" @submit.prevent="updateItem">
-        <input class="form-item" type="text" name="name" v-model="name" />
+        <input class="form-item" type="text" placeholder="name" name="name" v-model="name" />
         <select class="form-item" name="category" v-model="category">
             <option value="snack">Snack</option>
             <option value="drink">Drink</option>
             <option value="utility">Utility</option>
         </select>
-        <input class="form-item" type="number" name="price" v-model="price" />
-        <input class="form-item" type="number" name="cost" v-model="cost" />
+        <input class="form-item" type="number" placeholder="price" name="price" v-model="price" />
+        <input class="form-item" type="number" placeholder="cost" name="cost" v-model="cost" />
         <button class="form-item form-button" type="submit">Update</button>
         <button class="form-item form-button" @click.prevent="deleteItem">Delete</button>
     </form>

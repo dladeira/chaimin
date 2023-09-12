@@ -8,9 +8,9 @@
     <form class="form" @submit.prevent="createItem">
         <input class="form-item" type="text" placeholder="name" name="name" />
         <select class="form-item" name="category">
-            <option>snack</option>
-            <option>drink</option>
-            <option>utility</option>
+            <option value="snack">Snack</option>
+            <option value="drink">Drink</option>
+            <option value="utility">Utility</option>
         </select>
         <input class="form-item" type="number" placeholder="price" name="price" />
         <input class="form-item" type="number" placeholder="cost" name="cost" />
@@ -41,7 +41,7 @@
 
 .form-button {
     padding: 0.5rem 1rem;
-    
+
     border: 0.08rem solid #666;
     border-radius: 5px;
 

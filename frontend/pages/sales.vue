@@ -1,5 +1,9 @@
 <template>
-    <h2>Sales for {{ new Date().getDate() }}/{{ new Date().getMonth() + 1 }}/{{ new Date().getFullYear() }}</h2>
+    <h2>Sales for {{ new Date(date).getDate() }}/{{ new Date().getMonth(date) + 1 }}/{{ new Date(date).getFullYear() }}</h2>
+    <div class="day-links">
+        <h4 class="day-link" @click="() => manipulateDate(-(1000 * 60 * 60 * 24))">Previous day</h4>
+        <h4 class="day-link" @click="() => manipulateDate(+(1000 * 60 * 60 * 24))">Next day</h4>
+    </div>
 
     <div class="sales-header">
         <div class="sale">
@@ -12,9 +16,7 @@
     </div>
 
     <div class="sales">
-        <Sale v-for="sale of user.getSales(Date.now())" :key="sale._id" :sale="sale" @cancel="updateSales" />
-        <Sale v-for="sale of user.getSales(Date.now())" :key="sale._id" :sale="sale" @cancel="updateSales" />
-        <Sale v-for="sale of user.getSales(Date.now())" :key="sale._id" :sale="sale" @cancel="updateSales" />
+        <Sale v-for="sale of user.getSales(date)" :key="sale._id" :sale="sale" @cancel="updateSales" />
     </div>
 
 
@@ -25,7 +27,7 @@
         <select class="form-item" name="item">
             <option v-for="item of user.items" :value="item._id">{{ item.name }}</option>
         </select>
-        <button class="form-item form-button" type="submit">Register</button>
+        <button class="form-item form-button" type="submit">Register <i>(for today)</i></button>
     </form>
 
 
@@ -40,6 +42,25 @@
 </template>
 
 <style lang="scss" scoped>
+.day-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.day-link {
+    margin: 0 2rem 2rem 0;
+
+    text-decoration: underline;
+
+    user-select: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .form {
     display: flex;
     flex-direction: row;
@@ -158,10 +179,15 @@ $salePadding: 6rem;
 
 <script setup>
 const user = useUserStore()
+const date = ref(Date.now())
+
+function manipulateDate(value) {
+    date.value = date.value + value
+}
 
 function getProfit() {
     var profit = 0
-    for (var sale of user.getSales(Date.now())) {
+    for (var sale of user.getSales(date.value)) {
         profit += sale.price - sale.cost
     }
 
@@ -170,7 +196,7 @@ function getProfit() {
 
 function getRevenue() {
     var revenue = 0
-    for (var sale of user.getSales(Date.now())) {
+    for (var sale of user.getSales(date.value)) {
         revenue += sale.price
     }
 

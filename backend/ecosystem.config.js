@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            name: "portfolio-backend",
+            name: "chaimin-backend",
             script: "npm",
             args: "start",
         },

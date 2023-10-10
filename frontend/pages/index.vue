@@ -73,21 +73,21 @@
 </style>
 
 <script setup>
-const user = useUserStore()
+const user = useUserStore();
 
 function loginUser(e) {
-    user.login(e.target.username.value, e.target.password.value).then(err => {
+    user.login(e.target.username.value, e.target.password.value).then((err) => {
         if (!err) {
-            navigateTo("/sales")
+            navigateTo("/sales");
         }
-    })
+    });
 }
 
 function signupUser(e) {
-    user.signup(e.target.username.value, e.target.password.value).then(err => {
+    user.signup(e.target.username.value, e.target.password.value).then((err) => {
         if (!err) {
-            navigateTo("/sales")
+            navigateTo("/sales");
         }
-    })
+    });
 }
 </script>

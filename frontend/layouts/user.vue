@@ -7,13 +7,13 @@
 </template>
 
 <script setup>
-const load = ref(false)
-const user = useUserStore()
-user.update()
+const load = ref(false);
+const user = useUserStore();
+user.update();
 
 if (!user.loggedIn()) {
-    navigateTo('/')
+    navigateTo("/");
 } else {
-    load.value -= true
+    load.value -= true;
 }
 </script>

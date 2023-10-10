@@ -19,8 +19,6 @@
         <Sale v-for="sale of user.getSales(date)" :key="sale._id" :sale="sale" @cancel="updateSales" />
     </div>
 
-
-
     <h2>Register Sale</h2>
 
     <form class="form" @submit.prevent="registerSale">
@@ -30,14 +28,15 @@
         <button class="form-item form-button" type="submit">Register <i>(for today)</i></button>
     </form>
 
-
-
-
     <h2>Results</h2>
 
     <div class="results">
-        <p class="result">Revenue: <strong>{{ getRevenue() }}</strong></p>
-        <p class="result">Profit: <strong>{{ getProfit() }}</strong></p>
+        <p class="result">
+            Revenue: <strong>{{ getRevenue() }}</strong>
+        </p>
+        <p class="result">
+            Profit: <strong>{{ getProfit() }}</strong>
+        </p>
     </div>
 </template>
 
@@ -106,7 +105,6 @@
 
 .text {
     margin: 0.5rem 0;
-
 }
 
 $salePadding: 6rem;
@@ -178,36 +176,36 @@ $salePadding: 6rem;
 </style>
 
 <script setup>
-const user = useUserStore()
-const date = ref(Date.now())
+const user = useUserStore();
+const date = ref(Date.now());
 
 function manipulateDate(value) {
-    date.value = date.value + value
+    date.value = date.value + value;
 }
 
 function getProfit() {
-    var profit = 0
+    var profit = 0;
     for (var sale of user.getSales(date.value)) {
-        profit += sale.price - sale.cost
+        profit += sale.price - sale.cost;
     }
 
-    return profit
+    return profit;
 }
 
 function getRevenue() {
-    var revenue = 0
+    var revenue = 0;
     for (var sale of user.getSales(date.value)) {
-        revenue += sale.price
+        revenue += sale.price;
     }
 
-    return revenue
+    return revenue;
 }
 
 async function registerSale(e) {
-    await user.registerSale(e.target.item.value)
+    await user.registerSale(e.target.item.value);
 }
 
 definePageMeta({
-    layout: 'user'
-})
+    layout: "user",
+});
 </script>

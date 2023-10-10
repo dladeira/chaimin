@@ -1,12 +1,10 @@
-<template>
-    revenue
-</template>
+<template>revenue</template>
 
 <script setup>
-const user = useUserStore()
-user.update()
+const user = useUserStore();
+user.update();
 
 definePageMeta({
-    layout: 'user'
-})
+    layout: "user",
+});
 </script>

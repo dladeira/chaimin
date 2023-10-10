@@ -1,7 +1,7 @@
 <template>
     <h2 class="page-title">Store Items</h2>
-
-    <Item v-for="item of user.items" :item="item" :key="item._id" />
+    <div v-for="item of user.items"></div>
+    <Item v-if="user.items" v-for="item of user.items" :item="item" :key="item._id" />
 
     <h2>Create Item</h2>
 
@@ -12,8 +12,8 @@
             <option value="drink">Drink</option>
             <option value="utility">Utility</option>
         </select>
-        <input class="form-item" type="number" placeholder="price" name="price" />
-        <input class="form-item" type="number" placeholder="cost" name="cost" />
+        <input class="form-item" type="number" step="any" placeholder="price" name="price" />
+        <input class="form-item" type="number" step="any" placeholder="cost" name="cost" />
         <button class="form-item form-button" type="submit">Submit</button>
     </form>
 </template>
@@ -63,13 +63,15 @@
 </style>
 
 <script setup>
-const user = useUserStore()
+const user = useUserStore();
+
+console.log(user.items);
 
 function createItem(e) {
-    user.createItem(e.target.name.value, e.target.category.value, e.target.price.value, e.target.cost.value)
+    user.createItem(e.target.name.value, e.target.category.value, e.target.price.value, e.target.cost.value);
 }
 
 definePageMeta({
-    layout: 'user'
-})
+    layout: "user",
+});
 </script>

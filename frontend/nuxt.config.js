@@ -1,29 +1,27 @@
 export default defineNuxtConfig({
     devtools: { enabled: false },
-    modules: [
-        '@pinia/nuxt'
-    ],
+    modules: ["@pinia/nuxt"],
     pinia: {
         autoImports: [
-            'defineStore', // import { defineStore } from 'pinia'
+            "defineStore", // import { defineStore } from 'pinia'
         ],
     },
     imports: {
-        dirs: ['stores']
+        dirs: ["stores"],
     },
     vite: {
         css: {
             preprocessorOptions: {
                 sass: {
-                    additionalData: '@import "@/assets/styles/variables.scss"'
-                }
-            }
-        }
+                    additionalData: '@import "@/assets/styles/variables.scss"',
+                },
+            },
+        },
     },
     css: ["@/assets/styles/global.scss"],
     runtimeConfig: {
         public: {
-            API: process.env['API']
-        }
-    }
-})
+            API: process.env["API"],
+        },
+    },
+});

@@ -67,19 +67,19 @@
 </style>
 
 <script setup>
-const user = useUserStore()
-const emit = defineEmits(['cancel'])
+const user = useUserStore();
+const emit = defineEmits(["cancel"]);
 
 async function cancelSale() {
-    await user.cancelSale(props.sale._id)
-    emit('cancel')
+    await user.cancelSale(props.sale._id);
+    emit("cancel");
 }
 
 function getItem() {
-    return user.items.find(i => i._id == props.sale.item)
+    return user.items.find((i) => i._id == props.sale.item);
 }
 
 const props = defineProps({
-    sale: Object
-})
+    sale: Object,
+});
 </script>

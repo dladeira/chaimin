@@ -6,8 +6,8 @@
             <option value="drink">Drink</option>
             <option value="utility">Utility</option>
         </select>
-        <input class="form-item" type="number" placeholder="price" name="price" v-model="price" />
-        <input class="form-item" type="number" placeholder="cost" name="cost" v-model="cost" />
+        <input class="form-item" type="number" step="any" placeholder="price" name="price" v-model="price" />
+        <input class="form-item" type="number" step="any" placeholder="cost" name="cost" v-model="cost" />
         <button class="form-item form-button" type="submit">Update</button>
         <button class="form-item form-button" @click.prevent="deleteItem">Delete</button>
     </form>
@@ -60,21 +60,21 @@
 </style>
 
 <script setup>
-const user = useUserStore()
-const name = ref(props.item.name)
-const category = ref(props.item.category)
-const price = ref(props.item.currentPrice)
-const cost = ref(props.item.currentCost)
+const user = useUserStore();
+const name = ref(props.item.name);
+const category = ref(props.item.category);
+const price = ref(props.item.currentPrice);
+const cost = ref(props.item.currentCost);
 
 function updateItem(e) {
-    user.updateItem(props.item._id, e.target.name.value, e.target.category.value, e.target.price.value, e.target.cost.value)
+    user.updateItem(props.item._id, e.target.name.value, e.target.category.value, e.target.price.value, e.target.cost.value);
 }
 
 function deleteItem() {
-    user.deleteItem(props.item._id)
+    user.deleteItem(props.item._id);
 }
 
 const props = defineProps({
-    item: Object
-})
+    item: Object,
+});
 </script>

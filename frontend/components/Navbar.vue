@@ -9,7 +9,9 @@
         <div class="auth">
             <NuxtLink to="/" class="login-button" v-if="!user.loggedIn()">Log in</NuxtLink>
             <div class="logout" v-else>
-                <div class="logout-text" v-if="user.data.username">Logged in as: <strong>{{ user.data.username }}</strong></div>
+                <div class="logout-text" v-if="user.data.username">
+                    Logged in as: <strong>{{ user.data.username }}</strong>
+                </div>
                 <button class="logout-button" @click.prevent="user.logout">Logout</button>
             </div>
         </div>
@@ -97,5 +99,5 @@
 </style>
 
 <script setup>
-const user = useUserStore()
+const user = useUserStore();
 </script>
